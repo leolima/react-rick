@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
-import "./styles/main.sass";
 import { useDispatch, useSelector } from "react-redux";
 import { characterList } from "./redux/characterAction";
+import { Card } from "./components/Card";
+import "./styles/main.sass";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,20 +20,23 @@ function App() {
 
   return (
     <div className="App">
-      <img src="/logo.svg" alt="Rick and Morty" />
-      <input type="text" onChange={changeSearchTerm} placeholder="Buscar" />
-      {characters
-        .filter((c) =>
-          c?.name?.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-        .map((c) => (
-          <div className="card" key={c.name}>
-            <h2>{c.name}</h2>
-            <div>{c.gender}</div>
-            <div>{c.status}</div>
-            <div>{c.species}</div>
-          </div>
-        ))}
+      <div className="logo-container">
+        <img src="/logo.svg" alt="Rick and Morty" className="logo" />
+      </div>
+
+      <div className="search-container">
+        <input type="text" onChange={changeSearchTerm} placeholder="Buscar" />
+      </div>
+
+      <div className="list">
+        {characters
+          .filter((c) =>
+            c?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+          .map((c) => (
+            <Card key={c.name} {...c} />
+          ))}
+      </div>
     </div>
   );
 }
