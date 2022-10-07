@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { characterList } from "./redux/characterAction";
 
 function App() {
   const dispatch = useDispatch();
+  const characters = useSelector((state) => state.characterData);
 
   useEffect(() => {
     dispatch(characterList());
@@ -13,20 +13,14 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {characters.map((c) => (
+        <div key={c.name}>
+          <div>{c.name}</div>
+          <div>{c.gender}</div>
+          <div>{c.status}</div>
+          <div>{c.species}</div>
+        </div>
+      ))}
     </div>
   );
 }
