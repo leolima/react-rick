@@ -19,9 +19,12 @@ function App() {
 
   return (
     <div className="App">
+      <img src="/logo.svg" alt="Rick and Morty" />
       <input type="text" onChange={changeSearchedTerm} placeholder="Buscar" />
       {characters
-        .filter((c) => c?.name?.includes(searchedTerm))
+        .filter((c) =>
+          c?.name?.toLowerCase().includes(searchedTerm.toLowerCase())
+        )
         .map((c) => (
           <div key={c.name}>
             <div>{c.name}</div>
