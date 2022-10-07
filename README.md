@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# React Rick
+
+This is an example project using React + Redux + Redux-saga
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
